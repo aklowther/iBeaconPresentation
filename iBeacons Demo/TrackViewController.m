@@ -32,6 +32,19 @@
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"23542266-18D1-4FE4-B4A1-23F8195B9D39"];
     self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.devfright.myRegion"];
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"BeaconList" ofType:@"plist"];
+    NSArray *beacons = [[NSArray alloc] initWithContentsOfFile:path];
+    for (NSDictionary *tempBeacon in beacons) {
+        NSLog(@"%@", tempBeacon);
+        
+        NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:[tempBeacon valueForKey:@"UUID"]];
+        NSString *uniqueID = [[NSString alloc] initWithString:[tempBeacon valueForKey:@"Identifier"]];
+        CLBeaconRegion *tempRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uniqueID];
+        [self.locationManager startMonitoringForRegion:tempRegion];
+        [self locationManager:self.locationManager didStartMonitoringForRegion:tempRegion];
+    }
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
