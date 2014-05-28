@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		149059571924F4A900FAAA81 /* BeaconList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 149059561924F4A900FAAA81 /* BeaconList.plist */; };
+		14D49D1D19360B0500D03655 /* BeaconInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D49D1C19360B0500D03655 /* BeaconInfoTableViewCell.m */; };
 		C9AF590017F5678D00792F91 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AF58FF17F5678D00792F91 /* Foundation.framework */; };
 		C9AF590217F5678D00792F91 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AF590117F5678D00792F91 /* CoreGraphics.framework */; };
 		C9AF590417F5678D00792F91 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AF590317F5678D00792F91 /* UIKit.framework */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		149059561924F4A900FAAA81 /* BeaconList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeaconList.plist; sourceTree = "<group>"; };
+		14D49D1B19360B0500D03655 /* BeaconInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconInfoTableViewCell.h; sourceTree = "<group>"; };
+		14D49D1C19360B0500D03655 /* BeaconInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconInfoTableViewCell.m; sourceTree = "<group>"; };
 		C9AF58FC17F5678D00792F91 /* iBeacons Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iBeacons Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9AF58FF17F5678D00792F91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9AF590117F5678D00792F91 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 				C9AF590E17F5678D00792F91 /* AppDelegate.h */,
 				C9AF590F17F5678D00792F91 /* AppDelegate.m */,
 				C9AF591117F5678D00792F91 /* Main.storyboard */,
+				14D49D1B19360B0500D03655 /* BeaconInfoTableViewCell.h */,
+				14D49D1C19360B0500D03655 /* BeaconInfoTableViewCell.m */,
 				C9AF591417F5678D00792F91 /* ViewController.h */,
 				C9AF591517F5678D00792F91 /* ViewController.m */,
 				C9AF593817F56B4800792F91 /* ConfigViewController.h */,
@@ -273,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9AF593D17F5779200792F91 /* TrackViewController.m in Sources */,
+				14D49D1D19360B0500D03655 /* BeaconInfoTableViewCell.m in Sources */,
 				C9AF591617F5678D00792F91 /* ViewController.m in Sources */,
 				C9AF591017F5678D00792F91 /* AppDelegate.m in Sources */,
 				C9AF593A17F56B4800792F91 /* ConfigViewController.m in Sources */,
