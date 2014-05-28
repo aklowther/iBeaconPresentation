@@ -21,35 +21,47 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self initRegion];
-    [self locationManager:self.locationManager didStartMonitoringForRegion:self.beaconRegion];
+//    [self locationManager:self.locationManager didStartMonitoringForRegion:self.beaconRegion];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
-    [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-}
+//- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
+//    [self.locationManager startRangingBeaconsInRegion:region];
+//}
 
 - (void)initRegion {
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"23542266-18D1-4FE4-B4A1-23F8195B9D39"];
-    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.devfright.myRegion"];
-    [self.locationManager startMonitoringForRegion:self.beaconRegion];
+//    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"23542266-18D1-4FE4-B4A1-23F8195B9D39"];
+//    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.devfright.myRegion"];
+//    [self.locationManager startMonitoringForRegion:self.beaconRegion];
     
     NSString *path = [[NSBundle mainBundle] pathForResource: @"BeaconList" ofType:@"plist"];
     NSArray *beacons = [[NSArray alloc] initWithContentsOfFile:path];
     for (NSDictionary *tempBeacon in beacons) {
-        NSLog(@"%@", tempBeacon);
+//        NSLog(@"%@", tempBeacon);
         
         NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:[tempBeacon valueForKey:@"UUID"]];
+        CLBeaconMajorValue major = [tempBeacon valueForKey:@"Major"];
+        CLBeaconMinorValue minor = [tempBeacon valueForKey:@"Minor"];
         NSString *uniqueID = [[NSString alloc] initWithString:[tempBeacon valueForKey:@"Identifier"]];
-        CLBeaconRegion *tempRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uniqueID];
-        [self.locationManager startMonitoringForRegion:tempRegion];
-        [self locationManager:self.locationManager didStartMonitoringForRegion:tempRegion];
+        
+        if ((uuid != nil)){
+            CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uniqueID];
+
+            [beaconRegion setNotifyEntryStateOnDisplay:YES];
+            [beaconRegion setNotifyOnEntry:YES];
+            [beaconRegion setNotifyOnExit:YES];
+            
+            NSSet *monitoredRegions = [self.locationManager monitoredRegions];
+            if (![monitoredRegions containsObject:beaconRegion]) {
+                [self.locationManager startMonitoringForRegion:beaconRegion];
+            }
+            [self.locationManager startRangingBeaconsInRegion:beaconRegion];
+        }
     }
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     NSLog(@"Beacon Found");
-    [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+    [self.locationManager startRangingBeaconsInRegion:(CLBeaconRegion*)region];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
