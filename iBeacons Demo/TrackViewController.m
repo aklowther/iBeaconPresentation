@@ -51,7 +51,7 @@
 //            [beaconRegion setNotifyEntryStateOnDisplay:YES];
 //            [beaconRegion setNotifyOnEntry:YES];
 //            [beaconRegion setNotifyOnExit:YES];
-//            
+//
 //            NSSet *monitoredRegions = [self.locationManager monitoredRegions];
 ////            if (![monitoredRegions containsObject:beaconRegion]) {
 //                [self.locationManager startMonitoringForRegion:beaconRegion];
